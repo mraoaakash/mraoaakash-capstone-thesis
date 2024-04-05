@@ -1127,18 +1127,19 @@ class LatentDiffusion(DDPM):
             else:
                 cond_list = [cond for i in range(z.shape[-1])]  # Todo make this more efficient
 
-            # apply model by loop over crops
-            output_list = [self.model(z_list[i], t, **cond_list[i]) for i in range(z.shape[-1])]
-            assert not isinstance(
-                output_list[0], tuple
-            )  # todo cant deal with multiple model outputs check this never happens
+            with torch.cuda.amp.autocast():
+                # apply model by loop over crops
+                output_list = [self.model(z_list[i], t, **cond_list[i]) for i in range(z.shape[-1])]
+                assert not isinstance(
+                    output_list[0], tuple
+                )  # todo cant deal with multiple model outputs check this never happens
 
-            o = torch.stack(output_list, axis=-1)
-            o = o * weighting
-            # Reverse reshape to img shape
-            o = o.view((o.shape[0], -1, o.shape[-1]))  # (bn, nc * ks[0] * ks[1], L)
-            # stitch crops together
-            x_recon = fold(o) / normalization
+                o = torch.stack(output_list, axis=-1)
+                o = o * weighting
+                # Reverse reshape to img shape
+                o = o.view((o.shape[0], -1, o.shape[-1]))  # (bn, nc * ks[0] * ks[1], L)
+                # stitch crops together
+                x_recon = fold(o) / normalization
 
         else:
             with torch.cuda.amp.autocast():
