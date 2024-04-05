@@ -1009,7 +1009,7 @@ class LatentDiffusion(DDPM):
     
     @torch.autocast(device_type="cuda")
     def forward(self, x, c, *args, **kwargs):
-        t = torch.randint(0, self.num_timesteps, (x.shape[0],), device=self.device).long()
+        t = torch.randint(0, self.num_timesteps, (x.shape[0],), device=self.device).half()
         if self.model.conditioning_key is not None:
             assert c is not None
             if self.cond_stage_trainable:
