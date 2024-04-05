@@ -46,6 +46,7 @@ class Upsample(nn.Module):
         if self.with_conv:
             self.conv = torch.nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=1, padding=1)
 
+    @torch.autocast(device_type="cuda")
     def forward(self, x):
         x = torch.nn.functional.interpolate(x, scale_factor=2.0, mode="nearest")
         if self.with_conv:
@@ -61,6 +62,7 @@ class Downsample(nn.Module):
             # no asymmetric padding in torch conv, must do it ourselves
             self.conv = torch.nn.Conv2d(in_channels, in_channels, kernel_size=3, stride=2, padding=0)
 
+    @torch.autocast(device_type="cuda")
     def forward(self, x):
         if self.with_conv:
             pad = (0, 1, 0, 1)
@@ -92,6 +94,7 @@ class ResnetBlock(nn.Module):
             else:
                 self.nin_shortcut = torch.nn.Conv2d(in_channels, out_channels, kernel_size=1, stride=1, padding=0)
 
+    @torch.autocast(device_type="cuda")
     def forward(self, x, temb):
         h = x
         h = self.norm1(h)
@@ -133,6 +136,7 @@ class AttnBlock(nn.Module):
         self.v = torch.nn.Conv2d(in_channels, in_channels, kernel_size=1, stride=1, padding=0)
         self.proj_out = torch.nn.Conv2d(in_channels, in_channels, kernel_size=1, stride=1, padding=0)
 
+    @torch.autocast(device_type="cuda")
     def forward(self, x):
         h_ = x
         h_ = self.norm(h_)

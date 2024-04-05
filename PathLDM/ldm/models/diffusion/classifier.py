@@ -117,7 +117,8 @@ class NoisyLatentImageClassifier(pl.LightningModule):
         return self.diffusion_model.q_sample(
             x_start=x, t=t, noise=noise, continuous_sqrt_alpha_cumprod=continuous_sqrt_alpha_cumprod
         )
-
+    
+    @torch.autocast(device_type="cuda")
     def forward(self, x_noisy, t, *args, **kwargs):
         return self.model(x_noisy, t)
 
