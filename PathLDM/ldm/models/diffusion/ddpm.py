@@ -380,7 +380,8 @@ class DDPM(pl.LightningModule):
         loss_dict.update({f"{log_prefix}/loss": loss})
 
         return loss, loss_dict
-
+    
+    @torch.autocast(device_type="cuda")
     def forward(self, x, *args, **kwargs):
         # b, c, h, w, device, img_size, = *x.shape, x.device, self.image_size
         # assert h == img_size and w == img_size, f'height and width of image must be {img_size}'
@@ -1009,7 +1010,7 @@ class LatentDiffusion(DDPM):
     
     @torch.autocast(device_type="cuda")
     def forward(self, x, c, *args, **kwargs):
-        t = torch.randint(0, self.num_timesteps, (x.shape[0],), device=self.device).half()
+        t = torch.randint(0, self.num_timesteps, (x.shape[0],), device=self.device).long()
         if self.model.conditioning_key is not None:
             assert c is not None
             if self.cond_stage_trainable:
@@ -1835,6 +1836,7 @@ class DiffusionWrapper(pl.LightningModule):
             "class_text_hybrid",
         ]
 
+    @torch.autocast(device_type="cuda")
     def forward(self, x, t, c_concat: list = None, c_crossattn: list = None):
         if self.conditioning_key is None:
             out = self.diffusion_model(x, t)
