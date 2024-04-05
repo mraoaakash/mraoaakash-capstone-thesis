@@ -762,7 +762,8 @@ if __name__ == "__main__":
         # run
         if opt.train:
             try:
-                trainer.fit(model.half(), data)
+                with torch.cuda.amp.autocast():
+                    trainer.fit(model.half(), data)
             except Exception:
                 print(type(model))
                 print(type(data))
