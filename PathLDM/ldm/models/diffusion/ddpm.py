@@ -1540,6 +1540,7 @@ class LatentDiffusion(DDPM):
 
     @torch.no_grad()
     def validation_step(self, batch, batch_idx):
+        batch_idx = int(batch_idx)
 
         super().validation_step(batch, batch_idx)
 
