@@ -2,7 +2,7 @@
 eval "$(conda shell.bash hook)"
 conda activate pathldm
 
-BASEPATH=/storage/aakash.rao_asp24/research/research-thesis/PathLDM
+BASEPATH=/mnt/storage/aakashrao/cifsShare/PathLDM
 
 cd $BASEPATH
 
