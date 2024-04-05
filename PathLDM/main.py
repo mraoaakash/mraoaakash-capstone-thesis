@@ -764,7 +764,7 @@ if __name__ == "__main__":
         if opt.train:
             try:
                 # 
-                trainer.fit(model.half(), data)
+                trainer.fit(model, data)
             except Exception:
                 print(type(model))
                 print(type(data))

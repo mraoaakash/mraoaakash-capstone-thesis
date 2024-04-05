@@ -296,7 +296,7 @@ class DDPM(pl.LightningModule):
         model_mean, _, model_log_variance = self.p_mean_variance(x=x, t=t, clip_denoised=clip_denoised)
         noise = noise_like(x.shape, device, repeat_noise)
         # no noise when t == 0
-        nonzero_mask = (1 - (t == 0).half()).reshape(b, *((1,) * (len(x.shape) - 1)))
+        nonzero_mask = (1 - (t == 0).float()).reshape(b, *((1,) * (len(x.shape) - 1)))
         return model_mean + nonzero_mask * (0.5 * model_log_variance).exp() * noise
 
     @torch.no_grad()
@@ -393,7 +393,7 @@ class DDPM(pl.LightningModule):
         if len(x.shape) == 3:
             x = x[..., None]
         x = rearrange(x, "b h w c -> b c h w")
-        x = x.to(memory_format=torch.contiguous_format).half()
+        x = x.to(memory_format=torch.contiguous_format).float()
         return x
 
     def shared_step(self, batch):
@@ -577,7 +577,7 @@ class LatentDiffusion(DDPM):
             assert self.scale_factor == 1.0, "rather not use custom rescaling and std-rescaling simultaneously"
             # set rescale weight to 1./std of encodings
             print("### USING STD-RESCALING ###")
-            x = super().get_input(batch, self.first_stage_key).half()
+            x = super().get_input(batch, self.first_stage_key).float()
             x = x.to(self.device)
             encoder_posterior = self.encode_first_stage(x)
             z = self.get_first_stage_encoding(encoder_posterior).detach()
@@ -775,7 +775,7 @@ class LatentDiffusion(DDPM):
         return_original_cond=False,
         bs=None,
     ):
-        x = super().get_input(batch, k).half()
+        x = super().get_input(batch, k).float()
         # print("-------------------------------------------------------")
         # print(type(x))
         # print("-------------------------------------------------------")
@@ -841,7 +841,7 @@ class LatentDiffusion(DDPM):
         # print("Type of z")
         # print(type(z))
         # print("-------------------------------------------------------")
-        z  = z.half()
+        z  = z.float()
         if predict_cids:
             if z.dim() == 4:
                 z = torch.argmax(z.exp(), dim=1).long()
@@ -1017,7 +1017,7 @@ class LatentDiffusion(DDPM):
                 c = self.get_learned_conditioning(c)
             if self.shorten_cond_schedule:  # TODO: drop this option
                 tc = self.cond_ids[t].to(self.device)
-                c = self.q_sample(x_start=c, t=tc, noise=torch.randn_like(c.half()))
+                c = self.q_sample(x_start=c, t=tc, noise=torch.randn_like(c.float()))
         return self.p_losses(x, c, t, *args, **kwargs)
 
     def _rescale_annotations(self, bboxes, crop_coordinates):  # TODO: move to dataset
@@ -1286,7 +1286,7 @@ class LatentDiffusion(DDPM):
         if noise_dropout > 0.0:
             noise = torch.nn.functional.dropout(noise, p=noise_dropout)
         # no noise when t == 0
-        nonzero_mask = (1 - (t == 0).half()).reshape(b, *((1,) * (len(x.shape) - 1)))
+        nonzero_mask = (1 - (t == 0).float()).reshape(b, *((1,) * (len(x.shape) - 1)))
 
         if return_codebook_ids:
             return model_mean + nonzero_mask * (0.5 * model_log_variance).exp() * noise, logits.argmax(dim=1)
@@ -1524,7 +1524,7 @@ class LatentDiffusion(DDPM):
 
         for i in range(0, len(images), batch_size):
             chunk = images[i : i + batch_size]
-            input_tensor = torch.stack([train_transforms(img) for img in chunk]).half().to(self.device)
+            input_tensor = torch.stack([train_transforms(img) for img in chunk]).float().to(self.device)
 
             pred = model(input_tensor)[0]
 
