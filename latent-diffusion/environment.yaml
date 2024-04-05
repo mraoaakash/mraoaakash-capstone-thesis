@@ -1,4 +1,4 @@
-name: latent_diffusion
+name: latentdiff
 channels:
   - pytorch
   - defaults
