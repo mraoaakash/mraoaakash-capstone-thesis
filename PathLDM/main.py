@@ -760,7 +760,8 @@ if __name__ == "__main__":
         # run
         if opt.train:
             try:
-                trainer.fit(model, data)
+                with autocast(device_type='cuda', dtype=torch.float16):
+                    trainer.fit(model, data)
             except Exception:
                 melk()
                 raise
