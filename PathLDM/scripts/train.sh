@@ -7,7 +7,7 @@
 #PBS -l host=compute3
 
 eval "$(conda shell.bash hook)"
-conda activate ldm
+conda activate pathldm
 
 BASEPATH=/storage/aakash.rao_asp24/research/research-thesis/PathLDM
 
