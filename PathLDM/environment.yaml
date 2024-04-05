@@ -1,4 +1,4 @@
-name: latentdiff
+name: pathldm
 channels:
   - pytorch
   - defaults
