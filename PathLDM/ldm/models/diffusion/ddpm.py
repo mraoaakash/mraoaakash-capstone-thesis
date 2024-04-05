@@ -1553,7 +1553,7 @@ class LatentDiffusion(DDPM):
 
         if not self.real_stats:
             uname = os.path.expanduser("~").split("/")[-1]
-            path = self.fid_path or f"/home/{uname}/summer23/tcga_fid/center_crop_real_stats.npz"
+            path = self.fid_path or f"/mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset/center_crop_real_stats.npz"
             m1, s1 = self.compute_statistics_of_path(path)
 
             self.real_stats = [m1, s1]
