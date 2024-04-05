@@ -698,6 +698,7 @@ if __name__ == "__main__":
             del callbacks_cfg["ignore_keys_callback"]
 
         trainer_kwargs["callbacks"] = [instantiate_from_config(callbacks_cfg[k]) for k in callbacks_cfg]
+        trainer_kwargs["precision"] = 16
 
         trainer = Trainer.from_argparse_args(trainer_opt, **trainer_kwargs)
         trainer.logdir = logdir  ###
@@ -762,8 +763,8 @@ if __name__ == "__main__":
         # run
         if opt.train:
             try:
-                with torch.cuda.amp.autocast():
-                    trainer.fit(model.half(), data)
+                # 
+                trainer.fit(model.half(), data)
             except Exception:
                 print(type(model))
                 print(type(data))
