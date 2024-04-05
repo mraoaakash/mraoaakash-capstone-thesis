@@ -7,4 +7,4 @@ BASEPATH=/home/aakashrao/research/research-thesis/mraoaakash-capstone-thesis/Pat
 cd $BASEPATH
 
 wandb disabled
-python main.py -t --gpu 1  --base scripts/configs/clip_imagenet_finetune.yaml --name testing --train True --logdir /mnt/storage/aakashrao/cifsShare/PathLDM/outputs
+python main.py -t --gpu 1  --base scripts/configs/MPHASIS_clip_imagenet_finetune.yaml --name testing --train True --logdir /mnt/storage/aakashrao/cifsShare/PathLDM/outputs
