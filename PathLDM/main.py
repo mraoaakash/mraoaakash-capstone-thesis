@@ -576,7 +576,7 @@ if __name__ == "__main__":
 
         # model
         model = instantiate_from_config(config.model)
-        # model = model.float()
+        model = model.float()
         print(model)
 
         # trainer and callbacks
@@ -698,7 +698,7 @@ if __name__ == "__main__":
             del callbacks_cfg["ignore_keys_callback"]
 
         trainer_kwargs["callbacks"] = [instantiate_from_config(callbacks_cfg[k]) for k in callbacks_cfg]
-        trainer_kwargs["precision"] = 16
+        # trainer_kwargs["precision"] = 16
 
         trainer = Trainer.from_argparse_args(trainer_opt, **trainer_kwargs)
         trainer.logdir = logdir  ###
@@ -763,7 +763,6 @@ if __name__ == "__main__":
         # run
         if opt.train:
             try:
-                # 
                 trainer.fit(model.half(), data)
             except Exception:
                 print(type(model))
