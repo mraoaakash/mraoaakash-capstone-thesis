@@ -117,3 +117,4 @@ lightning:
         save_weights_only: True
   trainer:
     benchmark: True
+    precision: 16
