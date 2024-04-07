@@ -392,7 +392,7 @@ class ImageLogger(Callback):
                 N = min(images[k].shape[0], self.max_images)
                 images[k] = images[k][:N]
                 if isinstance(images[k], torch.Tensor):
-                    images[k] = images[k].detach().cpu()
+                    images[k] = images[k].detach().cpu().float() #AAKASH ADDITION BECAUSE OF "RUNTIMEERROR:'CLAMP_SCALAR_CPU' NOT IMPLEMENTED FOR 'HALF'"
                     if self.clamp:
                         images[k] = torch.clamp(images[k], -1.0, 1.0)
 
