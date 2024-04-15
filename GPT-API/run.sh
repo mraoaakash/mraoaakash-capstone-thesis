@@ -2,7 +2,7 @@ BASEPATH=/Users/mraoaakash/Documents/research/Capstone_Thesis/mraoaakash-capston
 
 cd $BASEPATH
 
-python main.py \
+python cleaner.py \
     --summaryfolder $BASEPATH/data/input/summaries/ \
     --master $BASEPATH/data/input/TCGA_Reports.csv \
     --input $BASEPATH/data/input/input.json \
