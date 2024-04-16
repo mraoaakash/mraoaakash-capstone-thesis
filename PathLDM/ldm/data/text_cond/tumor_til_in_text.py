@@ -25,7 +25,7 @@ class TCGADataset(Dataset):
         self.data_file = h5py.File(data_dir / "TCGA_BRCA_10x_448_tumor.hdf5", "r")
 
         # Load metadata
-        arr1 = np.load(data_dir / f"train_test_brca_tumor_75/{split}.npz", allow_pickle=True)
+        arr1 = np.load(data_dir / f"train_test_brca_tumor_20/{split}.npz", allow_pickle=True)
         self.indices = arr1["indices"]
         self.summaries = arr1["summaries"].tolist()
         self.prob_tumor = arr1["prob_tumor"].tolist()
