@@ -23,7 +23,7 @@ def infer(input, token_len,outpath):
 
 
 def main(input, output, token_len):
-    output = os.path.join(output, f'summaries_{token_len}')
+    output = os.path.join(output,   f'summaries_txts', f'summaries_{token_len}')
     os.makedirs(output, exist_ok=True)
 
 
@@ -42,6 +42,9 @@ def main(input, output, token_len):
 def generate_json(folderpath, outputpath):
     print(folderpath)
     print(outputpath)
+    os.makedirs(os.path.dirname(outputpath), exist_ok=True)
+    outputpath  = os.path.join(outputpath, f'summaries_{args.token_len}.json')
+
     files = os.listdir(folderpath)
 
     try:
@@ -52,7 +55,7 @@ def generate_json(folderpath, outputpath):
     # sort files
     files = sorted(files)
 
-    data = []
+    data = {}
 
     for file in files:  
         file_name = file.split('.')[0]  
@@ -60,15 +63,11 @@ def generate_json(folderpath, outputpath):
         content = None
         with open(file_path, 'r') as f:
             content = f.read()
-            temp_dict = {
-                f'{file_name}': content
-            }
-            data.append(temp_dict)
-    print(data)
+        data[file_name] = content
 
-    with open(outputpath, 'w') as f:
+    with open(outputpath, 'w+') as f:
         json.dump(data, f)
-    return
+        
 
 
 
@@ -80,5 +79,5 @@ if __name__ == "__main__":
     args = argparser.parse_args()
 
     # main(args.input, args.output, args.token_len)
-    generate_json(os.path.join(args.output, f'summaries_{args.token_len}'), os.path.join(args.output, f'summaries_{args.token_len}.json'))
+    generate_json(os.path.join(args.output, "summaries_txts", f'summaries_{args.token_len}'), os.path.join(args.output, f'summaries_{args.token_len}'))
 

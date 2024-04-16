@@ -1,14 +1,19 @@
-BASEPATH=/Users/mraoaakash/Documents/research/Capstone_Thesis/mraoaakash-capstone-thesis/GPT-API
+BASEPATH=/Volumes/miccai/PathLDM/inputs/TCGA_Dataset
 
-cd $BASEPATH
 
 # python scripts/cleaner.py \
-#     --summaryfolder $BASEPATH/data/input/summaries/ \
-#     --master $BASEPATH/data/input/TCGA_Reports.csv \
-#     --input $BASEPATH/data/input/input.json \
-#     --outputfolder $BASEPATH/data/output \
+#     --summaryfolder $BASEPATH/summaries/summaries_75 \
+#     --master $BASEPATH/TCGA_Reports.csv \
+#     --input $BASEPATH/input.json \
+#     --outputfolder $BASEPATH/summaries/ \
 
 python scripts/main.py \
-    --input $BASEPATH/data/output \
-    --output $BASEPATH/data/output/ \
-    --token_len 50 \
+    --input $BASEPATH/summaries \
+    --output $BASEPATH/summaries \
+    --token_len 35 \
+
+# python scripts/npzer.py \
+#     --input $BASEPATH/train_test_brca_tumor_75 \
+#     --summary $BASEPATH/summaries \
+#     --output $BASEPATH \
+#     --token_len 50 \
