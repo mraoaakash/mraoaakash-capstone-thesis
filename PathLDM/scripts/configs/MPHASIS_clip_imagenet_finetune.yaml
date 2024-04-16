@@ -88,7 +88,7 @@ data:
         config:
           root: /mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset
           split: train
-          token_num: 20
+          token_num: 35
           crop_size: 256
           num_levels: 2
           p_uncond: 0.1
@@ -98,7 +98,7 @@ data:
         config:
           root: /mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset
           split: test
-          token_num: 20
+          token_num: 35
           crop_size: 256
           num_levels: 2
 
