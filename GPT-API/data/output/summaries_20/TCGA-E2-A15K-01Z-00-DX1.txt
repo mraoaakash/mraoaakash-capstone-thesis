@@ -1,3 +1,0 @@
-Breast pathology report:
-- LumB subtype cancer
-- No necrosis or lymphovascular invasion

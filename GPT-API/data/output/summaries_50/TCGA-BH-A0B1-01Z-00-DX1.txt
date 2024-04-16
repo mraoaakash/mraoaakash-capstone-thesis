@@ -1,4 +1,0 @@
-Breast Pathology Report:
-- Right axilla lymph node: Metastatic ductal carcinoma, 0.9 cm.
-- Right breast: Multicentric infiltrating ductal carcinoma, 4.8 cm.
-- Necrosis <5

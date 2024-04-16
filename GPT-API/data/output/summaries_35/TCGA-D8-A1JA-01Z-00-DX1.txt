@@ -1,5 +1,0 @@
-Sample: Left breast with axillary tissues.
-Histology: Invasive ductal carcinoma.
-ER: <10% cells positive.
-PR: Negative.
-HER2: Positive (

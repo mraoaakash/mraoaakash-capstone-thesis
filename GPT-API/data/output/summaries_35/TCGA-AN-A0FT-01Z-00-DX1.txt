@@ -1,5 +1,0 @@
-Breast pathology report:
-- Female, infiltrative ductal carcinoma in right breast.
-- Grade 2, T2N1M0.
-- No treatment given.
--

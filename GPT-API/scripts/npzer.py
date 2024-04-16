@@ -9,20 +9,25 @@ def npzer(input, output, token_len, summary):
 
     summary = f'{summary}/summaries_{token_len}/summaries_{token_len}.json'
     summary = json.load(open(summary))
-    print(summary.keys())
 
     for i in ['train', 'test']:
         data = np.load(f'{input}/{i}.npz', allow_pickle=True)
-        print(data.files)
         # ['indices', 'summaries', 'prob_tumor', 'prob_til', 'indices_tumor', 'indices_til']
-        summaries = data['summaries'].tolist()
         prob_tumor = data['prob_tumor'].tolist()
         prob_til = data['prob_til'].tolist()
         indices = data['indices'].tolist()
+
+        # make summary into its correct type of dictionary
+        summaries = data['summaries'].tolist()
+        for key in summaries.keys():
+            try:
+                summaries[key] = summary[key]
+            except:
+                print(f'{key} not found')
+                summaries[key] = ''
         # indices_tumor = data['indices_tumor']
         # indices_til = data['indices_til']
-        # np.savez(f'{output}/{i}.npz', indices=indices, summaries=summaries, prob_tumor=prob_tumor, prob_til=prob_til)
-        break
+        np.savez(f'{output}/{i}.npz', indices=indices, summaries=summaries, prob_tumor=prob_tumor, prob_til=prob_til)
 
 
 

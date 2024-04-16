@@ -1,4 +1,0 @@
-Specimen: Radical mastectomy of breast.
-Tumor: Infiltrating ductal and lobular carcinoma. 
-Size: 2.2 x 2.2 x 2.2 cm.
-Lymph Nodes: 1/9 positive

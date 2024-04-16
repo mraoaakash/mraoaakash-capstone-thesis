@@ -1,3 +1,0 @@
-Histological classification: Luminal B breast cancer.
-Description: Necrosis present, no tumor infiltrating lymphocytes.
-Grade: Histological grade not specified, nuclear grade intermediate to

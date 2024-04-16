@@ -1,1 +1,0 @@
-LumB subtype of breast cancer. No necrosis. Tumor infiltrating lymphocytes present.

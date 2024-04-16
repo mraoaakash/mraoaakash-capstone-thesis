@@ -1,5 +1,0 @@
-Specimen: Mastectomy, Breast 
-Size: Not specified 
-Histology: Infiltrating ductal carcinoma 
-Grade: Not specified 
-Lymph nodes: 0/

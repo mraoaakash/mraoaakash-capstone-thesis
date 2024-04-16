@@ -1,4 +1,0 @@
-Surgical pathology report: 
-- Right breast excisional biopsy: Invasive mucinous carcinoma, Nottingham grade 1, negative margins. 
-- Lateral margin biopsy: Fibrocystic changes, no malignancy. 
-- Sentinel lymph node

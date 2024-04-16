@@ -1,3 +1,0 @@
-Breast pathology report:
-- Specimen type: Lumpectomy, Lower outer quadrant, 2.7 x 3.2 cm infiltrating duct carcinoma (G3).
-- Lymph nodes: 0/10 positive for metastasis.

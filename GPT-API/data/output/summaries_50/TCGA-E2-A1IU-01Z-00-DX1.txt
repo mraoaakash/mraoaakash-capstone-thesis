@@ -1,5 +1,0 @@
-Breast pathology report:
-- Sentinel lymph node #1 - no carcinoma.
-- Right breast mastectomy:
-  - Invasive ductal carcinoma, grade 1, 2cm.
-  - Ductal carcinoma in situ (DCIS), cri

@@ -1,6 +1,0 @@
-Pathology Report: 
-- Location: Left breast
-- Histological Classification: Medullary Carcinoma, poor nuclear grade
-- Size: 2.0 cm
-- No angiolymphatic or perineural invasion
-- 

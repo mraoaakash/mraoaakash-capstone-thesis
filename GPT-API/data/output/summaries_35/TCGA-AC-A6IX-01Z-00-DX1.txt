@@ -1,5 +1,0 @@
-Histological classification: Luminal A breast cancer.
-Type: Invasive ductal carcinoma.
-Necrosis: Absent.
-TILs: Not mentioned.
-Histological grade

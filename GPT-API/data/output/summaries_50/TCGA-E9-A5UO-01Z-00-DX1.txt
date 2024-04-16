@@ -1,4 +1,0 @@
-Breast pathology report:
-- Mucinous adenocarcinoma, G-2, 3.5 x 3 cm tumor.
-- No venous invasion, lymph node metastasis.
-- Moderately differentiated adenocarcinoma,
