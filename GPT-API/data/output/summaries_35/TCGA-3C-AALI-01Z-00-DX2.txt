@@ -1,0 +1,2 @@
+Breast pathology report:
+- Right breast lumpectomy: Grade 2 invasive ductal carcinoma with micropapillary features, Nottingham score 5. Intraductal

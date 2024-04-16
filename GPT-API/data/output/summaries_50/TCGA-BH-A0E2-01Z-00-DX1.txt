@@ -1,0 +1,4 @@
+Breast pathology report: 
+- Right breast, modified radical mastectomy for invasive ductal carcinoma and ductal carcinoma in situ (DCIS) with associated calcifications.
+- Nottingham Grade 3 invasive component, nuclear grade 3 DCIS.
+-

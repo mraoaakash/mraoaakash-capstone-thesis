@@ -1,0 +1,3 @@
+Breast pathology report:
+- Right breast: Lobular Carcinoma In Situ.
+- Left breast: Invasive Ductal Carcinoma, SBR Grade 

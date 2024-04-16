@@ -1,0 +1,4 @@
+Breast Pathology Report:
+- Non-Sentinel Lymph Node #1: Metastatic carcinoma, 0.4cm.
+- Right Breast: Lobular carcinoma in situ, fibroadenoma, columnar cell changes.
+- Left

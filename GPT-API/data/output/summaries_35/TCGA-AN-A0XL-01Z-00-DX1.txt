@@ -1,0 +1,1 @@
+Sample: Female breast cancer tumor (infiltrative ductal carcinoma), Grade 2, T2N0M0, no lymphovascular invasion, receptor status unknown.

@@ -1,0 +1,5 @@
+Breast pathology report:
+- Her2 subtype invasive ductal carcinoma.
+- No mention of necrosis.
+- No tumor-infiltrating lymphocytes.
+- High histological grade

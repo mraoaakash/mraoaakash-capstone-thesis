@@ -1,0 +1,5 @@
+Breast Pathology Report:
+- Laterality: Right, lower outer quadrant
+- Specimen type: Radical mastectomy
+- Histologic type: Lobular carcinoma
+-

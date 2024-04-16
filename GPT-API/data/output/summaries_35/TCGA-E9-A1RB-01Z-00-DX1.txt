@@ -1,0 +1,3 @@
+Breast pathology report:
+- Central breast tumor measuring 2.7 x 2.5 cm.
+- Histologic type: Infiltrating ductal carcinoma, G2

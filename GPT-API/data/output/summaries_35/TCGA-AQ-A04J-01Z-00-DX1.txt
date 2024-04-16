@@ -1,0 +1,4 @@
+Breast pathology report:
+- Right axillary sentinel lymph node: no metastatic carcinoma.
+- Left axillary sentinel lymph node: no metastatic carcinoma.
+- Breast, right

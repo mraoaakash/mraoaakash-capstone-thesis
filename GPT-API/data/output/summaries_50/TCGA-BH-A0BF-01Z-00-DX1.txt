@@ -1,0 +1,4 @@
+Breast pathology report:
+- Right axillary sentinel lymph node #1: Free of tumor.
+- Right axillary sentinel lymph node #2: Micrometastatic adenocarcinoma.
+- Right total mastectomy specimen: Infiltrating

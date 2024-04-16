@@ -1,0 +1,5 @@
+Pathology Report:
+- Poorly differentiated invasive carcinoma
+- Tumor diameter: 5.5 cm
+- Histological grade: III
+- Tumor classification: N

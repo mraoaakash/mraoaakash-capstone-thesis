@@ -1,0 +1,7 @@
+Breast pathology report:
+
+- Infiltrating ductal carcinoma
+- Histological grade: 4/9, Grade 1
+- Tumor size: 2.8 cm
+- No lymphovascular invasion
+- ER+, PR-

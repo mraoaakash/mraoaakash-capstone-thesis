@@ -1,0 +1,4 @@
+Specimen #:
+- Sentinel lymph node #1: Positive for micrometastasis, 0.6mm.
+- Sentinel lymph node #2: No metastasis found.
+- Right breast tissue: Invasive ductal carcinoma, moderately differentiated

@@ -1,0 +1,4 @@
+Breast pathology report:
+- Right breast partial mastectomy
+- Invasive lobular carcinoma, SBR grade II with focal necrosis
+- ER expression in 68%,
