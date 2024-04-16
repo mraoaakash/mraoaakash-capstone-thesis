@@ -68,9 +68,6 @@ def generate_json(folderpath, outputpath):
 
     with open(outputpath, 'w') as f:
         json.dump(data, f)
-
-
-
     return
 
 
