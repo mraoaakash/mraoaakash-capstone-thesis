@@ -24,7 +24,7 @@ def npzer(input, output, token_len, summary):
                 summaries[key] = summary[key]
             except:
                 print(f'{key} not found')
-                summaries[key] = ''
+                summaries[key] = summaries[key][:token_len]
         # indices_tumor = data['indices_tumor']
         # indices_til = data['indices_til']
         np.savez(f'{output}/{i}.npz', indices=indices, summaries=summaries, prob_tumor=prob_tumor, prob_til=prob_til)
