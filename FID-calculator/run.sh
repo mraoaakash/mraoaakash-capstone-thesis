@@ -1,4 +1,4 @@
-BASEPATH=/Volumes/miccai/PathLDM/inputs/TCGA_Dataset
+BASEPATH=/mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset
 
 
 # for loop for vales 20,35,50
