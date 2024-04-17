@@ -33,6 +33,9 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
         folder_name = data_file["folder_name"][idx].decode("utf-8")
         wsi = data_file["wsi"][idx].decode("utf-8")
 
+        if os.path.join(outdir, f"{wsi}_{folder_name}.png") in os.listdir(outdir):
+            continue
+
         tile = np.array(Image.open(io.BytesIO(tile)))
 
         image = (tile / 127.5 - 1.0)
@@ -48,9 +51,8 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
         image = Image.fromarray((image * 127.5 + 127.5).astype(np.uint8))
         
         # save image
-        save_path = os.path.join(outdir)
-        os.makedirs(save_path, exist_ok=True)
-        image.save(os.path.join(save_path, f"{wsi}_{folder_name}.png"))
+        os.makedirs(outdir, exist_ok=True)
+        image.save(os.path.join(outdir, f"{wsi}_{folder_name}.png"))
 
     
     
