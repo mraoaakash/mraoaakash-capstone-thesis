@@ -16,6 +16,9 @@ def get_random_crop(img, size):
     return img
 
 def TCGADataset(data_dir, token_num, outdir, crop_size=256):
+
+    os.makedirs(outdir, exist_ok=True)
+
     data_file = h5py.File(os.path.join(data_dir, "TCGA_BRCA_10x_448_tumor.hdf5"), "r")
 
     train = np.load(os.path.join(data_dir, f"train_test_brca_tumor_{token_num}/train.npz"), allow_pickle=True)
@@ -23,7 +26,7 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
     indices_train = train["indices"]
     indices_test = test["indices"]
 
-    indices = np.concatenate([indices_train, indices_test])
+    indices = indices_test
 
     print(data_file.keys())
 
