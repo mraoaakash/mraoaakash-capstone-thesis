@@ -113,13 +113,14 @@ if __name__ == "__main__":
     model = get_model(args.config_path, device, args.ckpt_path)
     sampler = DDIMSampler(model)
 
+
+    summaries = TCGADataset(args.data_dir, args.token_num, args.outdir)
+    print(summaries)
+    
     # batch_size = 16
     # shape = [3,64,64]
 
     # scale = 1.5
-
-    summaries = TCGADataset(args.data_dir, args.token_num, args.outdir)
-    print(summaries)
     
     # with torch.no_grad():
     #     #unconditional token for classifier free guidance
