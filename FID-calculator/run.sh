@@ -1,4 +1,4 @@
-SHAREPATH=/Volumes/miccai
+SHAREPATH=/mnt/storage/aakashrao/cifsShare
 BASEPATH=$SHAREPATH/PathLDM/inputs/TCGA_Dataset
 
 
