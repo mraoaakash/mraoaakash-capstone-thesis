@@ -15,18 +15,19 @@ def BLEU_evaluation(merged, token_num):
     # 'reference_length': reference_length
 
     bleu = evaluate.load("bleu")
-    bleu_scores = pd.DataFrame(columns=["id", "BLEU", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
+    bleu_scores = pd.DataFrame(columns=["id", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
     bleu_scores["id"] = merged["id"]
     for index, row in merged.iterrows():
         bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
         print(f"BLEU score for {row['id']} is {bleu}")
-        bleu_scores.loc[index, "BLEU"] = bleu
-        bleu_scores.loc[index, "bleu"] = bleu["bleu"]
-        bleu_scores.loc[index, "precisions"] = bleu["precisions"]
-        bleu_scores.loc[index, "brevity_penalty"] = bleu["brevity_penalty"]
-        bleu_scores.loc[index, "length_ratio"] = bleu["length_ratio"]
-        bleu_scores.loc[index, "translation_length"] = bleu["translation_length"]
-        bleu_scores.loc[index, "reference_length"] = bleu["reference_length"]
+        id_of_row = row["id"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "bleu"] = bleu["bleu"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "precisions"] = bleu["precisions"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "brevity_penalty"] = bleu["brevity_penalty"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "length_ratio"] = bleu["length_ratio"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "translation_length"] = bleu["translation_length"]
+        bleu_scores.loc[bleu_scores["id"] == id_of_row, "reference_length"] = bleu["reference_length"]
+        
 
         break
 
@@ -52,9 +53,6 @@ if __name__ =="__main__":
     other_summaries_df = pd.DataFrame(columns=["id", f"summary_{args.token_num}"])
     other_summaries_df["id"] = [key for key in other_summaries.keys()]
     other_summaries_df[f"summary_{args.token_num}"] = [value for value in other_summaries.values()]
-
-    print(main_summaries.head())
-    print(other_summaries_df.head())
 
     merged = pd.merge(main_summaries, other_summaries_df, on="id")
 
