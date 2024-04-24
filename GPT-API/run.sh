@@ -25,12 +25,18 @@ BASEPATH=/Volumes/miccai/PathLDM/inputs/TCGA_Dataset
 # done
 
 
-for i in 75 20 35 50
-do
-    echo "Processing for token length $i"
-    python scripts/evaluate_summaries.py \
-        --input /mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset/summaries \
-        --output /mnt/storage/aakashrao/cifsShare/PathLDM/outputs/evaluate_summaries \
-        --token_num $i 
-done
+# for i in 75 20 35 50
+# do
+#     echo "Processing for token length $i"
+#     python scripts/evaluate_summaries.py \
+#         --input /mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset/summaries \
+#         --output /mnt/storage/aakashrao/cifsShare/PathLDM/outputs/evaluate_summaries \
+#         --token_num $i 
+# done
 
+
+# python scripts/main.py \
+#     --input $BASEPATH/summaries \
+#     --output $BASEPATH/summaries \
+#     --token_len 35 \
+    # --type keywords
