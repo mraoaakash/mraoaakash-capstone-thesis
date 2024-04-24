@@ -43,13 +43,13 @@ def get_encoding_keywords(MESSAGE, TOKEN_LEN):
 
 
 
-def get_response(MESSAGE, TOKEN_LEN):
+def get_response(MESSAGE, TOKEN_LEN, type='k_summary'):
     client = OpenAI()
     stream = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=MESSAGE,
         stream=True,
-        max_tokens=TOKEN_LEN,
+        max_tokens=TOKEN_LEN if type == 'k_summary' else 1000,
     )
     output = ""
     for chunk in stream:

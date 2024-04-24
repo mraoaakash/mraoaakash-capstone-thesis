@@ -15,7 +15,7 @@ def infer(input, token_len,outpath, type='k_summary'):
     else:
         input = get_encoding_keywords(input, token_len)
 
-    response = get_response(input, token_len)
+    response = get_response(input, token_len, type=type)
     print(input)
     print(response)
     with open(outpath, 'w+') as f:
@@ -43,8 +43,8 @@ def main(input, output, token_len, type='k_summary'):
         if os.path.exists(output_path):
             continue
         else:
-            infer(row["summary_long"], token_len, output_path)
-        # break
+            infer(row["summary_long"], token_len, output_path, type)
+        break
 
 def generate_json(folderpath, outputpath, type='k_summary'):
     print(folderpath)
