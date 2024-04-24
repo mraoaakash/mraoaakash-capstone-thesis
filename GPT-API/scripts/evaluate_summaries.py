@@ -16,17 +16,20 @@ def BLEU_evaluation(merged, token_num):
 
     bleu = evaluate.load("bleu")
     bleu_scores = pd.DataFrame(columns=["id", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
-    bleu_scores["id"] = merged["id"]
     for index, row in merged.iterrows():
         bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
         print(f"BLEU score for {row['id']} is {bleu}")
-        id_of_row = row["id"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "bleu"] = bleu["bleu"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "precisions"] = bleu["precisions"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "brevity_penalty"] = bleu["brevity_penalty"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "length_ratio"] = bleu["length_ratio"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "translation_length"] = bleu["translation_length"]
-        bleu_scores.loc[bleu_scores["id"] == id_of_row, "reference_length"] = bleu["reference_length"]
+        df_temp = pd.DataFrame({
+            "id": [row["id"]],
+            "bleu": [bleu["bleu"]],
+            "precisions": [bleu["precisions"]],
+            "brevity_penalty": [bleu["brevity_penalty"]],
+            "length_ratio": [bleu["length_ratio"]],
+            "translation_length": [bleu["translation_length"]],
+            "reference_length": [bleu["reference_length"]]
+        })
+        bleu_scores = pd.concat([bleu_scores, df_temp])
+
         
 
         break
