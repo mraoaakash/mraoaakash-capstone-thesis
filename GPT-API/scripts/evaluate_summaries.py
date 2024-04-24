@@ -35,7 +35,7 @@ if __name__ =="__main__":
     other_summaries = json.load(open(other_summary_path, "r"))
     other_summaries_df = pd.DataFrame(columns=["id", f"summary_{args.token_num}"])
     other_summaries_df["id"] = [key for key in other_summaries.keys()]
-    other_summaries_df["summary"] = [value for value in other_summaries.values()]
+    other_summaries_df[f"summary_{args.token_num}"] = [value for value in other_summaries.values()]
 
     print(main_summaries.head())
     print(other_summaries_df.head())
