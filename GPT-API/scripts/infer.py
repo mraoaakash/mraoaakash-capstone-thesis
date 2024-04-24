@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from openai import OpenAI
 
-def get_encoding(MESSAGE, TOKEN_LEN):
+def get_encoding_k_summary(MESSAGE, TOKEN_LEN):
     if 'OPENAI_API_KEY' not in os.environ:
         raise Exception('API key is missing')
     first_part = f"Extract information from breast pathology report. List the histological classification, i.e. type of cancer or DCIS, subtype, description of any necrosis, any mention of tumor infiltrating lymphocytes, histological grade, nuclear grade, lymphovascular invasion, calcification, receptor status, IHC and any other ancillary testing results. List out and expand the main points. The report is: \n {MESSAGE}"
@@ -21,6 +21,27 @@ def get_encoding(MESSAGE, TOKEN_LEN):
     ]
 
     return structured
+
+def get_encoding_keywords(MESSAGE, TOKEN_LEN):
+    if 'OPENAI_API_KEY' not in os.environ:
+        raise Exception('API key is missing')
+    first_part = f"Extract information from breast pathology report. List the histological classification, i.e. type of cancer or DCIS, subtype, description of any necrosis, any mention of tumor infiltrating lymphocytes, histological grade, nuclear grade, lymphovascular invasion, calcification, receptor status, IHC and any other ancillary testing results. List out the main keywords that are present in the report: \n {MESSAGE}"
+    second_message = f"Please generate a succinct list of summary words from the above information.  Exclude any filler words or sentences. If something is not mentioned or specified, exclude it from the report. Be as crisp as possible, and only include very important information. Give only a list. Extremely Low verbosity"
+
+    structured = [
+        {
+            "role": "user",
+            "content": first_part
+        },
+        {
+            "role": "user",
+            "content": second_message
+        }
+    ]
+
+    return structured
+
+
 
 def get_response(MESSAGE, TOKEN_LEN):
     client = OpenAI()
