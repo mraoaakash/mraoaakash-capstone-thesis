@@ -33,7 +33,7 @@ def BLEU_evaluation(merged, token_num):
 
         
 
-        break
+        # break
 
     print(bleu_scores.head())
 
