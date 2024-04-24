@@ -1,9 +1,10 @@
-import evaluate
 import os
 import json
+import evaluate
 import argparse
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 
 
 def BLEU_evaluation(merged, token_num):
@@ -16,9 +17,9 @@ def BLEU_evaluation(merged, token_num):
 
     bleu = evaluate.load("bleu")
     bleu_scores = pd.DataFrame(columns=["id", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
-    for index, row in merged.iterrows():
+    for index, row in tqdm(merged.iterrows(), total=merged.shape[0]):
         bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
-        print(f"BLEU score for {row['id']} is {bleu}")
+        # print(f"BLEU score for {row['id']} is {bleu}")
         df_temp = pd.DataFrame({
             "id": [row["id"]],
             "bleu": [bleu["bleu"]],
