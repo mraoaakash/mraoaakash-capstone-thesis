@@ -14,12 +14,23 @@ BASEPATH=/Volumes/miccai/PathLDM/inputs/TCGA_Dataset
 
 
 # for loop for vales 20,35,50
-for i in 20 35 50
+# for i in 20 35 50
+# do
+#     echo "Processing for token length $i"
+#     python scripts/npzer.py \
+#         --input $BASEPATH/train_test_brca_tumor_$i \
+#         --summary $BASEPATH/summaries \
+#         --output $BASEPATH \
+#         --token_len 35 
+# done
+
+
+for i in 20 #35 50
 do
     echo "Processing for token length $i"
-    python scripts/npzer.py \
-        --input $BASEPATH/train_test_brca_tumor_$i \
-        --summary $BASEPATH/summaries \
-        --output $BASEPATH \
-        --token_len 35 
+    python scripts/evaluate_summaries.py \
+        --input /mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset/summaries \
+        --output /mnt/storage/aakashrao/cifsShare/PathLDM/outputs/evaluate_summaries \
+        --token_num $i 
 done
+
