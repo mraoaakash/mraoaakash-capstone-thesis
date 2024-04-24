@@ -7,12 +7,30 @@ import pandas as pd
 
 
 def BLEU_evaluation(merged, token_num):
+    # 'bleu': bleu score,
+    # 'precisions': geometric mean of n-gram precisions,
+    # 'brevity_penalty': brevity penalty,
+    # 'length_ratio': ratio of lengths,
+    # 'translation_length': translation_length,
+    # 'reference_length': reference_length
+
     bleu = evaluate.load("bleu")
-    bleu_scores = pd.DataFrame(columns=["id", "BLEU"])
+    bleu_scores = pd.DataFrame(columns=["id", "BLEU", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
+    bleu_scores["id"] = merged["id"]
     for index, row in merged.iterrows():
         bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
         print(f"BLEU score for {row['id']} is {bleu}")
+        bleu_scores.loc[index, "BLEU"] = bleu
+        bleu_scores.loc[index, "bleu"] = bleu["bleu"]
+        bleu_scores.loc[index, "precisions"] = bleu["precisions"]
+        bleu_scores.loc[index, "brevity_penalty"] = bleu["brevity_penalty"]
+        bleu_scores.loc[index, "length_ratio"] = bleu["length_ratio"]
+        bleu_scores.loc[index, "translation_length"] = bleu["translation_length"]
+        bleu_scores.loc[index, "reference_length"] = bleu["reference_length"]
+
         break
+
+    print(bleu_scores.head())
 
 
 if __name__ =="__main__":
