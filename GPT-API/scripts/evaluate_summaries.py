@@ -28,9 +28,11 @@ if __name__ =="__main__":
     other_summary_path = os.path.join(args.input, f"summaries_{args.token_num}", f"summaries_{args.token_num}.json")
 
     main_summaries = pd.read_csv(main_summary_path)
+    main_summaries = main_summaries[["submitter_slide_ids","summary_long"]]
     
     other_summaries = json.load(open(other_summary_path, "r"))
     other_summaries_df = pd.DataFrame(columns=["id", "summary"])
     other_summaries_df["id"] = [key for key in other_summaries.keys()]
     other_summaries_df["summary"] = [value for value in other_summaries.values()]
 
+    
