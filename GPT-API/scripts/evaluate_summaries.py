@@ -35,7 +35,16 @@ def BLEU_evaluation(merged, token_num):
 
         # break
 
-    print(bleu_scores.head())
+    # print(bleu_scores.head())
+
+    # print statistics of bleu scores
+    print(f"Mean BLEU score: {np.mean(bleu_scores['bleu'])}")
+    print(f"Mean precisions: {np.mean(bleu_scores['precisions'])}")
+    print(f"Mean brevity_penalty: {np.mean(bleu_scores['brevity_penalty'])}")
+    print(f"Mean length_ratio: {np.mean(bleu_scores['length_ratio'])}")
+    print(f"Mean translation_length: {np.mean(bleu_scores['translation_length'])}")
+    print(f"Mean reference_length: {np.mean(bleu_scores['reference_length'])}")
+    
 
 
 if __name__ =="__main__":
