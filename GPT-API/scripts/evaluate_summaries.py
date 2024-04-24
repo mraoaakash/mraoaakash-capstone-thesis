@@ -45,7 +45,46 @@ def BLEU_evaluation(merged, token_num):
     print(f'Std BLEU score: {np.std(bleu_scores["bleu"])}')
     print(f'Q1 BLEU score: {np.percentile(bleu_scores["bleu"], 25)}')
     print(f'Q3 BLEU score: {np.percentile(bleu_scores["bleu"], 75)}')
-    
+
+
+
+def ROUGE_evaluation(merged, token_num):
+    # 'bleu': bleu score,
+    # 'precisions': geometric mean of n-gram precisions,
+    # 'brevity_penalty': brevity penalty,
+    # 'length_ratio': ratio of lengths,
+    # 'translation_length': translation_length,
+    # 'reference_length': reference_length
+
+    rouge_model = evaluate.load("rouge")
+    rouge_scores = pd.DataFrame(columns=["id", 'rouge1', 'rouge2', 'rougeL', 'rougeLsum'])
+    for index, row in tqdm(merged.iterrows(), total=merged.shape[0]):
+        rouge = rouge_model.compute(predictions=[row[f"summary_{token_num}"]] if isinstance(row[f"summary_{token_num}"], str) else ["Not Given"], references=[row["summary_long"] if isinstance(row["summary_long"], str) else ["Not Given"]])
+        # print(f"rouge score for {row['id']} is {rouge}")
+        df_temp = pd.DataFrame({
+            "id": [row["id"]],
+            'rouge1': [rouge["rouge1"]],
+            'rouge2': [rouge["rouge2"]],
+            'rougeL': [rouge["rougeL"]],
+            'rougeLsum': [rouge["rougeLsum"]]
+        })
+        rouge_scores = pd.concat([rouge_scores, df_temp])
+
+        
+
+        # break
+
+    # print(rouge_scores.head())
+
+    # print statistics of rouge scores
+    print(f"Mean rouge1 score: {np.mean(rouge_scores["rouge1"])}")
+    print(f'Median rouge1 score: {np.median(rouge_scores["rouge1"])}')
+    print(f'Min rouge1 score: {np.min(rouge_scores["rouge1"])}')
+    print(f'Max rouge1 score: {np.max(rouge_scores["rouge1"])}')
+    print(f'Std rouge1 score: {np.std(rouge_scores["rouge1"])}')
+    print(f'Q1 rouge1 score: {np.percentile(rouge_scores["rouge1"], 25)}')
+    print(f'Q3 rouge1 score: {np.percentile(rouge_scores["rouge1"], 75)}')
+
 
 
 
@@ -55,6 +94,13 @@ if __name__ =="__main__":
     argparser.add_argument("--output", type=str, required=True)
     argparser.add_argument("--token_num", type=str, required=True)
     args = argparser.parse_args()
+
+
+    print("-----------------Evaluating Summaries-----------------")
+    print(f"Input Path: {args.input}")
+    print(f"Output Path: {args.output}")
+    print(f"Token Number: {args.token_num}")
+    print("------------------------------------------------------")
 
     main_summary_path = os.path.join(args.input, "all_cleaned_summaries.csv")
     other_summary_path = os.path.join(args.input, f"summaries_{args.token_num}", f"summaries_{args.token_num}.json")
@@ -72,3 +118,8 @@ if __name__ =="__main__":
     merged = pd.merge(main_summaries, other_summaries_df, on="id")
 
     bleu_scores = BLEU_evaluation(merged, args.token_num)
+
+    print("------------------------------------------------------")
+    print("Evaluation Completed")
+    print("------------------------------------------------------")
+    print("\n\n\n\n\n")
