@@ -97,19 +97,28 @@ if __name__ =="__main__":
     print("------------------------------------------------------")
 
     main_summary_path = os.path.join(args.input, "all_cleaned_summaries.csv")
-    other_summary_path = os.path.join(args.input, f"summaries_{args.token_num}", f"summaries_{args.token_num}.json")
+    if args.token_num !=75:
+        other_summary_path = os.path.join(args.input, f"summaries_{args.token_num}", f"summaries_{args.token_num}.json")
 
-    main_summaries = pd.read_csv(main_summary_path)
-    main_summaries = main_summaries[["submitter_slide_ids","summary_long"]]
-    main_summaries = main_summaries.rename(columns={"submitter_slide_ids":"id"})
+        main_summaries = pd.read_csv(main_summary_path)
+        main_summaries = main_summaries[["submitter_slide_ids","summary_long"]]
+        main_summaries = main_summaries.rename(columns={"submitter_slide_ids":"id"})
 
-    
-    other_summaries = json.load(open(other_summary_path, "r"))
-    other_summaries_df = pd.DataFrame(columns=["id", f"summary_{args.token_num}"])
-    other_summaries_df["id"] = [key for key in other_summaries.keys()]
-    other_summaries_df[f"summary_{args.token_num}"] = [value for value in other_summaries.values()]
+        
+        other_summaries = json.load(open(other_summary_path, "r"))
+        other_summaries_df = pd.DataFrame(columns=["id", f"summary_{args.token_num}"])
+        other_summaries_df["id"] = [key for key in other_summaries.keys()]
+        other_summaries_df[f"summary_{args.token_num}"] = [value for value in other_summaries.values()]
+        merged = pd.merge(main_summaries, other_summaries_df, on="id")
 
-    merged = pd.merge(main_summaries, other_summaries_df, on="id")
+    else:
+        merged = pd.read_csv(main_summary_path)
+        merged = merged[["submitter_slide_ids","summary_long","summary_75"]]
+        merged = merged.rename(columns={"submitter_slide_ids":"id"})
+        merged = merged.rename(columns={"summary_75":"summary_75"})
+        
+
+
 
     # bleu_scores = BLEU_evaluation(merged, args.token_num)
     rogue_scores = ROUGE_evaluation(merged, args.token_num)
