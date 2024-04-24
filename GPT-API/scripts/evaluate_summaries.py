@@ -97,7 +97,7 @@ if __name__ =="__main__":
     print("------------------------------------------------------")
 
     main_summary_path = os.path.join(args.input, "all_cleaned_summaries.csv")
-    if args.token_num !=75:
+    if args.token_num !="75":
         other_summary_path = os.path.join(args.input, f"summaries_{args.token_num}", f"summaries_{args.token_num}.json")
 
         main_summaries = pd.read_csv(main_summary_path)
@@ -116,7 +116,7 @@ if __name__ =="__main__":
         merged = merged[["submitter_slide_ids","summary_long","summary_75"]]
         merged = merged.rename(columns={"submitter_slide_ids":"id"})
         merged = merged.rename(columns={"summary_75":"summary_75"})
-        
+
 
 
 
