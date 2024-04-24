@@ -70,12 +70,12 @@ def ROUGE_evaluation(merged, token_num):
         })
         rouge_scores = pd.concat([rouge_scores, df_temp])
     print(f"Mean rouge1 score: {np.mean(rouge_scores['rouge1'])}")
-    print(f'Median rouge1 score: {np.median(rouge_scores['rouge1'])}')
-    print(f'Min rouge1 score: {np.min(rouge_scores['rouge1'])}')
-    print(f'Max rouge1 score: {np.max(rouge_scores['rouge1'])}')
-    print(f'Std rouge1 score: {np.std(rouge_scores['rouge1'])}')
-    print(f'Q1 rouge1 score: {np.percentile(rouge_scores['rouge1'], 25)}')
-    print(f'Q3 rouge1 score: {np.percentile(rouge_scores['rouge1'], 75)}')
+    print(f"Median rouge1 score: {np.median(rouge_scores['rouge1'])}")
+    print(f"Min rouge1 score: {np.min(rouge_scores['rouge1'])}")
+    print(f"Max rouge1 score: {np.max(rouge_scores['rouge1'])}")
+    print(f"Std rouge1 score: {np.std(rouge_scores['rouge1'])}")
+    print(f"Q1 rouge1 score: {np.percentile(rouge_scores['rouge1'], 25)}")
+    print(f"Q3 rouge1 score: {np.percentile(rouge_scores['rouge1'], 75)}")
 
     return
 
