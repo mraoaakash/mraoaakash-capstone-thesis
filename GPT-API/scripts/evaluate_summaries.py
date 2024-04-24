@@ -30,5 +30,7 @@ if __name__ =="__main__":
     main_summaries = pd.read_csv(main_summary_path)
     
     other_summaries = json.load(open(other_summary_path, "r"))
-    other_summaries = pd.DataFrame(other_summaries)
+    other_summaries_df = pd.DataFrame(columns=["id", "summary"])
+    other_summaries_df["id"] = [key for key in other_summaries.keys()]
+    other_summaries_df["summary"] = [value for value in other_summaries.values()]
 
