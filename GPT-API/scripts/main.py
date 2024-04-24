@@ -44,7 +44,7 @@ def main(input, output, token_len, type='k_summary'):
             continue
         else:
             infer(row["summary_long"], token_len, output_path, type)
-        break
+        # break
 
 def generate_json(folderpath, outputpath, type='k_summary'):
     print(folderpath)
