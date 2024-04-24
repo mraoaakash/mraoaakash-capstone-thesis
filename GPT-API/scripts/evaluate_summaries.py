@@ -39,3 +39,7 @@ if __name__ =="__main__":
 
     print(main_summaries.head())
     print(other_summaries_df.head())
+
+    merged = pd.merge(main_summaries, other_summaries_df, on="id")
+
+    print(merged.head())
