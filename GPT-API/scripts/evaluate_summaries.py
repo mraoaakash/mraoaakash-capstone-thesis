@@ -15,10 +15,10 @@ def BLEU_evaluation(merged, token_num):
     # 'translation_length': translation_length,
     # 'reference_length': reference_length
 
-    bleu = evaluate.load("bleu")
+    bleu_model = evaluate.load("bleu")
     bleu_scores = pd.DataFrame(columns=["id", "bleu", "precisions", "brevity_penalty", "length_ratio", "translation_length", "reference_length"])
     for index, row in tqdm(merged.iterrows(), total=merged.shape[0]):
-        bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
+        bleu = bleu_model.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
         # print(f"BLEU score for {row['id']} is {bleu}")
         df_temp = pd.DataFrame({
             "id": [row["id"]],
