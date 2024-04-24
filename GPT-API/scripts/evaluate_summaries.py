@@ -6,15 +6,13 @@ import numpy as np
 import pandas as pd
 
 
-def BLEU_evaluation(referenes, predictions):
-    bleu_scores = []
+def BLEU_evaluation(merged, token_num):
     bleu = evaluate.load("bleu")
-    for i in range(len(referenes)):
-        reference = referenes[i]
-        prediction = predictions[i]
-        bleu_score = bleu.compute(reference, prediction)
-        bleu_scores.append(bleu_score)
-    return bleu_scores
+    bleu_scores = pd.DataFrame(columns=["id", "BLEU"])
+    for index, row in merged.iterrows():
+        bleu = bleu.compute(predictions=[row[f"summary_{token_num}"]], references=[row["summary_long"]])
+        print(f"BLEU score for {row['id']} is {bleu}")
+        break
 
 
 if __name__ =="__main__":
@@ -42,4 +40,4 @@ if __name__ =="__main__":
 
     merged = pd.merge(main_summaries, other_summaries_df, on="id")
 
-    print(merged.head())
+    bleu_scores = BLEU_evaluation(merged, args.token_num)
