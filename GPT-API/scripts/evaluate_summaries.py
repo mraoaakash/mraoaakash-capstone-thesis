@@ -48,42 +48,36 @@ def BLEU_evaluation(merged, token_num):
 
 
 
-def ROUGE_evaluation(merged, token_num):
-    # 'bleu': bleu score,
-    # 'precisions': geometric mean of n-gram precisions,
-    # 'brevity_penalty': brevity penalty,
-    # 'length_ratio': ratio of lengths,
-    # 'translation_length': translation_length,
-    # 'reference_length': reference_length
+# def ROUGE_evaluation(merged, token_num):
+#     # 'bleu': bleu score,
+#     # 'precisions': geometric mean of n-gram precisions,
+#     # 'brevity_penalty': brevity penalty,
+#     # 'length_ratio': ratio of lengths,
+#     # 'translation_length': translation_length,
+#     # 'reference_length': reference_length
 
-    rouge_model = evaluate.load("rouge")
-    rouge_scores = pd.DataFrame(columns=["id", 'rouge1', 'rouge2', 'rougeL', 'rougeLsum'])
-    for index, row in tqdm(merged.iterrows(), total=merged.shape[0]):
-        rouge = rouge_model.compute(predictions=[row[f"summary_{token_num}"]] if isinstance(row[f"summary_{token_num}"], str) else ["Not Given"], references=[row["summary_long"] if isinstance(row["summary_long"], str) else ["Not Given"]])
-        # print(f"rouge score for {row['id']} is {rouge}")
-        df_temp = pd.DataFrame({
-            "id": [row["id"]],
-            'rouge1': [rouge["rouge1"]],
-            'rouge2': [rouge["rouge2"]],
-            'rougeL': [rouge["rougeL"]],
-            'rougeLsum': [rouge["rougeLsum"]]
-        })
-        rouge_scores = pd.concat([rouge_scores, df_temp])
+#     rouge_model = evaluate.load("rouge")
+#     rouge_scores = pd.DataFrame(columns=["id", 'rouge1', 'rouge2', 'rougeL', 'rougeLsum'])
+#     for index, row in tqdm(merged.iterrows(), total=merged.shape[0]):
+#         rouge = rouge_model.compute(predictions=[row[f"summary_{token_num}"]] if isinstance(row[f"summary_{token_num}"], str) else ["Not Given"], references=[row["summary_long"] if isinstance(row["summary_long"], str) else ["Not Given"]])
+#         # print(f"rouge score for {row['id']} is {rouge}")
+#         df_temp = pd.DataFrame({
+#             "id": [row["id"]],
+#             'rouge1': [rouge["rouge1"]],
+#             'rouge2': [rouge["rouge2"]],
+#             'rougeL': [rouge["rougeL"]],
+#             'rougeLsum': [rouge["rougeLsum"]]
+#         })
+#         rouge_scores = pd.concat([rouge_scores, df_temp])
+#     print(f"Mean rouge1 score: {np.mean(rouge_scores["rouge1"])}")
+#     print(f'Median rouge1 score: {np.median(rouge_scores["rouge1"])}')
+#     print(f'Min rouge1 score: {np.min(rouge_scores["rouge1"])}')
+#     print(f'Max rouge1 score: {np.max(rouge_scores["rouge1"])}')
+#     print(f'Std rouge1 score: {np.std(rouge_scores["rouge1"])}')
+#     print(f'Q1 rouge1 score: {np.percentile(rouge_scores["rouge1"], 25)}')
+#     print(f'Q3 rouge1 score: {np.percentile(rouge_scores["rouge1"], 75)}')
 
-        
-
-        # break
-
-    # print(rouge_scores.head())
-
-    # print statistics of rouge scores
-    print(f"Mean rouge1 score: {np.mean(rouge_scores["rouge1"])}")
-    print(f'Median rouge1 score: {np.median(rouge_scores["rouge1"])}')
-    print(f'Min rouge1 score: {np.min(rouge_scores["rouge1"])}')
-    print(f'Max rouge1 score: {np.max(rouge_scores["rouge1"])}')
-    print(f'Std rouge1 score: {np.std(rouge_scores["rouge1"])}')
-    print(f'Q1 rouge1 score: {np.percentile(rouge_scores["rouge1"], 25)}')
-    print(f'Q3 rouge1 score: {np.percentile(rouge_scores["rouge1"], 75)}')
+#     return
 
 
 
