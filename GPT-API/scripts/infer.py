@@ -26,7 +26,7 @@ def get_encoding_keywords(MESSAGE, TOKEN_LEN):
     if 'OPENAI_API_KEY' not in os.environ:
         raise Exception('API key is missing')
     first_part = f"Extract information from breast pathology report. List the histological classification, i.e. type of cancer or DCIS, subtype, description of any necrosis, any mention of tumor infiltrating lymphocytes, histological grade, nuclear grade, lymphovascular invasion, calcification, receptor status, IHC and any other ancillary testing results. List out the main keywords that are present in the report: \n {MESSAGE}"
-    second_message = f"Please generate a succinct list of summary words from the above information.  Exclude any filler words or sentences. If something is not mentioned or specified, exclude it from the report. Be as crisp as possible, and only include very important information. Give only a list. Extremely Low verbosity"
+    second_message = f"Extremely Low verbosity. Provide a comma separated list of the keywords in the report. Focus on the presence of the keywords and not the context. If something is not mentioned or specified, exclude it from the list. Exclude any filler words or sentences. Generate a concise comma separated list of the keywords in the report."
 
     structured = [
         {
