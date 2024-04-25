@@ -118,9 +118,12 @@ if __name__ == "__main__":
     model = get_model(args.config_path, device, args.ckpt_path)
     sampler = DDIMSampler(model)
 
-
-    summaries = TCGADataset(args.data_dir, args.token_num, args.outdir)
-    print(summaries)
+    if not os.path.exists(os.path.join(args.outdir, "summaries.csv")):
+        summaries = TCGADataset(args.data_dir, args.token_num, args.outdir)
+        print(summaries)
+        summaries.to_csv(os.path.join(args.outdir, "summaries.csv"), index=False)
+    else:
+        summaries = pd.read_csv(os.path.join(args.outdir, "summaries.csv"))
     
     # batch_size = 16
     # shape = [3,64,64]
