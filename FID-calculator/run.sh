@@ -1,5 +1,5 @@
 SHAREPATH=/mnt/storage/aakashrao/cifsShare
-BASEPATH=$SHAREPATH/PathLDM/inputs/TCGA_Dataset
+BASEPATH=$SHAREPATH/PathLDM/inputs
 
 
 # for loop for vales 20,35,50

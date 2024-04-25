@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import argparse
 import numpy as np
@@ -46,6 +47,51 @@ def main(input, output, token_len, type='k_summary'):
             infer(row["summary_long"], token_len, output_path, type)
         # break
 
+def org_data(data):
+    # split by any special characters except hyphen
+    data = data.replace('\n', ' ')
+    data = data.replace('\t', ' ')
+    data = data.replace('\r', ' ')
+    data = data.replace(';', ' ')
+    data = data.replace(',', ' ')
+    data = data.replace('.', ' ')
+    data = data.replace('(', ' ')
+    data = data.replace(')', ' ')
+    data = data.replace('[', ' ')
+    data = data.replace(']', ' ')
+    data = data.replace('{', ' ')
+    data = data.replace('}', ' ')
+    data = data.replace(':', ' ')
+    data = data.replace('!', ' ')
+    data = data.replace('?', ' ')
+    data = data.replace('"', ' ')
+    data = data.replace("'", ' ')
+    data = data.replace('`', ' ')
+    data = data.replace('~', ' ')
+    data = data.replace('@', ' ')
+    data = data.replace('#', ' ')
+    data = data.replace('$', ' ')
+    data = data.replace('%', ' ')
+    data = data.replace('^', ' ')
+    data = data.replace('&', ' ')
+    data = data.replace('*', ' ')
+    data = data.replace('_', ' ')
+    data = data.replace('+', ' ')
+    data = data.replace('=', ' ')
+    data = data.replace('<', ' ')
+    data = data.replace('>', ' ')
+    data = data.replace('/', ' ')
+    data = data.replace('\\', ' ')
+    data = data.replace('|', ' ')
+    data = data.replace('`', ' ')
+    data = data.replace(';', ' ')
+    data = data.replace(':', ' ')
+
+    data = data.split(' ')
+    data = [x for x in data if x != '']
+    print(data)
+
+
 def generate_json(folderpath, outputpath, type='k_summary'):
     print(folderpath)
     print(outputpath)
@@ -73,10 +119,17 @@ def generate_json(folderpath, outputpath, type='k_summary'):
         content = None
         with open(file_path, 'r') as f:
             content = f.read()
-        data[file_name] = content
+        if type == 'k_summary':
+            data[file_name] = content
+        else:
+            data_org = org_data(content)
+            data[file_name] = data_org
+            sys.exit()
 
     with open(outputpath, 'w+') as f:
         json.dump(data, f)
+
+
         
 
 
@@ -89,6 +142,6 @@ if __name__ == "__main__":
     argparser.add_argument('--type', type=str, default='k_summary')
     args = argparser.parse_args()
 
-    main(args.input, args.output, args.token_len, args.type)
-    # generate_json(os.path.join(args.output, "summaries_txts", f'summaries_{args.token_len}'), os.path.join(args.output, f'summaries_{args.token_len}' if args.type == 'k_summary' else 'summaries_keywords'), args.type)
+    # main(args.input, args.output, args.token_len, args.type)
+    generate_json(os.path.join(args.output, "summaries_txts", f'summaries_{args.token_len}'), os.path.join(args.output, f'summaries_{args.token_len}' if args.type == 'k_summary' else 'summaries_keywords'), args.type)
 

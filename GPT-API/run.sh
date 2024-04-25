@@ -35,8 +35,8 @@ BASEPATH=/mnt/storage/aakashrao/cifsShare/PathLDM/inputs/TCGA_Dataset
 # done
 
 
-python scripts/main.py \
-    --input $BASEPATH/summaries \
-    --output $BASEPATH/summaries \
-    --token_len 35 \
-    --type keywords
+# python scripts/main.py \
+#     --input $BASEPATH/summaries \
+#     --output $BASEPATH/summaries \
+#     --token_len 35 \
+#     --type keywords

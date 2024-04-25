@@ -26,8 +26,8 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
 
     data_file = h5py.File(os.path.join(data_dir, "TCGA_BRCA_10x_448_tumor.hdf5"), "r")
 
-    train = np.load(os.path.join(data_dir, f"train_test_brca_tumor_{token_num}/train.npz"), allow_pickle=True)
-    test = np.load(os.path.join(data_dir, f"train_test_brca_tumor_{token_num}/test.npz"), allow_pickle=True)
+    train = np.load(os.path.join(data_dir, "TCGA_Dataset", f"train_test_brca_tumor_{token_num}/train.npz"), allow_pickle=True)
+    test = np.load(os.path.join(data_dir, "TCGA_Dataset", f"train_test_brca_tumor_{token_num}/test.npz"), allow_pickle=True)
     indices_train = train["indices"]
     indices_test = test["indices"]
     summaries = indices_test["summaries"].tolist()
