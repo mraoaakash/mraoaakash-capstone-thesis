@@ -146,7 +146,7 @@ if __name__ == "__main__":
     # convert each element in summaries to string
     summaries = [[str(s) for s in summary] for summary in summaries]
     
-    for summary, file in zip(summaries, ids):
+    for summary, file in tqdm.tqdm(zip(summaries, ids)):
         # convert summary to string
         with torch.no_grad():
             #unconditional token for classifier free guidance
@@ -165,5 +165,3 @@ if __name__ == "__main__":
                 sample = rearrange(sample, 'c h w -> h w c')
                 sample = Image.fromarray(sample.numpy())
                 sample.save(os.path.join(outdir, f"{file[i]}.png"))
-
-            break
