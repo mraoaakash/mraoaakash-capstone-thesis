@@ -125,17 +125,25 @@ if __name__ == "__main__":
     else:
         summaries = pd.read_csv(os.path.join(args.outdir, "summaries.csv"))
     
-    batch_size = 1
+    batch_size = 16
     shape = [3,64,64]
 
     scale = 1.5
 
     outdir = os.path.join(args.outdir, "images")
     os.makedirs(outdir, exist_ok=True)
+
+    # make np arrays of ids and summaries and reshape to batch_size
+    ids = np.array(summaries["idx"])
+    summaries = np.array(summaries["caption"])
+
+    ids = ids.reshape(-1, batch_size)
+    summaries = summaries.reshape(-1, batch_size)
+    # convert each element in summaries to string
+    summaries = [[str(s) for s in summary] for summary in summaries]
     
-    for summary, file in tqdm.tqdm(zip(summaries["caption"], summaries["idx"]), total=len(summaries)):
+    for summary, file in zip(summaries, ids):
         # convert summary to string
-        summary = str(summary)
         with torch.no_grad():
             #unconditional token for classifier free guidance
             ut = get_unconditional_token(batch_size)
@@ -150,10 +158,7 @@ if __name__ == "__main__":
             x_samples_ddim = torch.clamp((x_samples_ddim + 1.0) / 2.0, min=0.0, max=1.0)
             x_samples_ddim = (x_samples_ddim * 255).to(torch.uint8).cpu()
 
-            for i in range(batch_size):
-                img = x_samples_ddim[i].permute(1, 2, 0).numpy()
-                img = Image.fromarray(img)
-                img.save(os.path.join(outdir, f"{file}.png"))
-
-
-
+            for i, sample in enumerate(x_samples_ddim):
+                sample = rearrange(sample, 'c h w -> h w c')
+                sample = Image.fromarray(sample.numpy())
+                sample.save(os.path.join(outdir, f"{file[i]}.png"))
