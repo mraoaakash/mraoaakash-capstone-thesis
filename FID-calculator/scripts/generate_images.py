@@ -31,13 +31,9 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
     test = np.load(os.path.join(data_dir, "TCGA_Dataset", f"train_test_brca_tumor_{token_num}/test.npz"), allow_pickle=True)
     # indices_train = train["indices"]
     indices_test = test["indices"]
-    print(indices_test, len(indices_test))
-    
-    sys.exit()
-
-    summaries = indices_test["summaries"]#.tolist()
-    prob_tumor = indices_test["prob_tumor"]#.tolist()
-    prob_til = indices_test["prob_til"]#.tolist()
+    summaries = test["summaries"].tolist()
+    prob_tumor = test["prob_tumor"].tolist()
+    prob_til = test["prob_til"].tolist()
 
 
 
