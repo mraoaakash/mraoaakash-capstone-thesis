@@ -150,14 +150,14 @@ if __name__ == "__main__":
         # convert summary to string
         with torch.no_grad():
             #unconditional token for classifier free guidance
-            ut = get_unconditional_token(batch_size)
-            uc = model.get_learned_conditioning(ut)
+            # ut = get_unconditional_token(batch_size)
+            # uc = model.get_learned_conditioning(ut)
             
-            ct = get_conditional_token(batch_size, summary)
-            cc = model.get_learned_conditioning(ct)
+            # ct = get_conditional_token(batch_size, summary)
+            # cc = model.get_learned_conditioning(ct)
             
-            samples_ddim, _ = sampler.sample(50, batch_size, shape, cc, verbose=False, \
-                                            unconditional_guidance_scale=scale, unconditional_conditioning=uc, eta=0)
+            samples_ddim, _ = sampler.sample(50, batch_size, shape, summary, verbose=False, \
+                                            unconditional_guidance_scale=scale, unconditional_conditioning=summary, eta=0)
             x_samples_ddim = model.decode_first_stage(samples_ddim)
             x_samples_ddim = torch.clamp((x_samples_ddim + 1.0) / 2.0, min=0.0, max=1.0)
             x_samples_ddim = (x_samples_ddim * 255).to(torch.uint8).cpu()
