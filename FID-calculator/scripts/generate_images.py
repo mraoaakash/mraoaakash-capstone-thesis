@@ -129,8 +129,11 @@ if __name__ == "__main__":
     shape = [3,64,64]
 
     scale = 1.5
+
+    outdir = os.path.join(args.outdir, "images")
+    os.makedirs(outdir, exist_ok=True)
     
-    for summary, file in zip(summaries["caption"], summaries["idx"]):
+    for summary, file in tqdm.tqdm(zip(summaries["caption"], summaries["idx"])):
         with torch.no_grad():
             #unconditional token for classifier free guidance
             ut = get_unconditional_token(batch_size)
