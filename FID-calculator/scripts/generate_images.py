@@ -6,8 +6,8 @@ import argparse
 from omegaconf import OmegaConf
 from torchvision import transforms
 
-from PathLDM.ldm.models.diffusion.ddim import DDIMSampler
-from PathLDM.ldm.util import instantiate_from_config
+from PathLDM.ddim import DDIMSampler
+from PathLDM.util import instantiate_from_config
 warnings.filterwarnings("ignore")
 import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
