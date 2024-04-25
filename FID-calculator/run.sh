@@ -12,8 +12,8 @@ do
     #     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images
 
     echo "/media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i"
-    
-    python scripts/generate_images.py \
+
+    python FID-calculator/scripts/generate_images.py \
         --ckpt_path $SHAREPATH/PathLDM/outputs/04-08T22-44_testing/checkpoints/last.ckpt \
         --config_path $SHAREPATH/PathLDM/outputs/04-08T22-44_testing/configs/04-08T22-44-project.yaml \
         --data_dir $BASEPATH \
