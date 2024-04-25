@@ -125,27 +125,30 @@ if __name__ == "__main__":
     else:
         summaries = pd.read_csv(os.path.join(args.outdir, "summaries.csv"))
     
-    # batch_size = 16
-    # shape = [3,64,64]
+    batch_size = 1
+    shape = [3,64,64]
 
-    # scale = 1.5
+    scale = 1.5
     
-    # with torch.no_grad():
-    #     #unconditional token for classifier free guidance
-    #     ut = get_unconditional_token(batch_size)
-    #     uc = model.get_learned_conditioning(ut)
-        
-    #     ct = get_conditional_token(batch_size, summary)
-    #     cc = model.get_learned_conditioning(ct)
-        
-    #     samples_ddim, _ = sampler.sample(50, batch_size, shape, cc, verbose=False, \
-    #                                     unconditional_guidance_scale=scale, unconditional_conditioning=uc, eta=0)
-    #     x_samples_ddim = model.decode_first_stage(samples_ddim)
-    #     x_samples_ddim = torch.clamp((x_samples_ddim + 1.0) / 2.0, min=0.0, max=1.0)
-    #     x_samples_ddim = (x_samples_ddim * 255).to(torch.uint8).cpu()
+    for summary, file in zip(summaries["caption"], summaries["idx"]):
+        with torch.no_grad():
+            #unconditional token for classifier free guidance
+            ut = get_unconditional_token(batch_size)
+            uc = model.get_learned_conditioning(ut)
+            
+            ct = get_conditional_token(batch_size, summary)
+            cc = model.get_learned_conditioning(ct)
+            
+            samples_ddim, _ = sampler.sample(50, batch_size, shape, cc, verbose=False, \
+                                            unconditional_guidance_scale=scale, unconditional_conditioning=uc, eta=0)
+            x_samples_ddim = model.decode_first_stage(samples_ddim)
+            x_samples_ddim = torch.clamp((x_samples_ddim + 1.0) / 2.0, min=0.0, max=1.0)
+            x_samples_ddim = (x_samples_ddim * 255).to(torch.uint8).cpu()
 
-    #     grid = make_grid(x_samples_ddim, nrow=8)
-        
-    #     # to image
-    #     grid = rearrange(grid, 'c h w -> h w c').cpu().numpy()
+            for i in range(batch_size):
+                img = x_samples_ddim[i].permute(1, 2, 0).numpy()
+                img = Image.fromarray(img)
+                img.save(os.path.join(args.outdir, f"{file}.png"))
+
+        break
 
