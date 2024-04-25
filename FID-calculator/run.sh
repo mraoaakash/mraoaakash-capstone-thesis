@@ -18,5 +18,6 @@ do
         --config_path $SHAREPATH/PathLDM/outputs/04-08T22-44_testing/configs/04-08T22-44-project.yaml \
         --data_dir $BASEPATH \
         --token_num $i \
+        --batch_size 32 \
         --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i
 done

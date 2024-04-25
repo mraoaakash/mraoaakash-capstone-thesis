@@ -111,6 +111,7 @@ if __name__ == "__main__":
     argparser.add_argument("--config_path", type=str, required=True)
     argparser.add_argument("--data_dir", type=str, required=True)
     argparser.add_argument("--token_num", type=str, required=True)
+    argparser.add_argument("--batch_size", type=int, default=16)
     argparser.add_argument("--outdir", type=str, required=True)
     args = argparser.parse_args()
     
@@ -125,7 +126,7 @@ if __name__ == "__main__":
     else:
         summaries = pd.read_csv(os.path.join(args.outdir, "summaries.csv"))
     
-    batch_size = 16
+    batch_size = args.batch_size
     shape = [3,64,64]
 
     scale = 1.5
