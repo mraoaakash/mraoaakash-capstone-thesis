@@ -50,6 +50,9 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
         folder_name = data_file["folder_name"][idx].decode()
         text_prompt = summaries[wsi_name]
 
+        text_name = f"{wsi_name}_{folder_name}"
+        print(text_name)
+
         text_prompt = summaries[wsi_name]
 
         # Convert tumor infiltrating lymphocytes to levels low / mid / high and add to text prompt
