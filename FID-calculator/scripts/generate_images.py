@@ -162,3 +162,5 @@ if __name__ == "__main__":
                 sample = rearrange(sample, 'c h w -> h w c')
                 sample = Image.fromarray(sample.numpy())
                 sample.save(os.path.join(outdir, f"{file[i]}.png"))
+
+            break
