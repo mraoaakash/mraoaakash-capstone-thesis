@@ -137,7 +137,11 @@ if __name__ == "__main__":
     ids = np.array(summaries["idx"])
     summaries = np.array(summaries["caption"])
 
+    # reshape with batch_size and add padding to last batch
+    ids = np.pad(ids, (0, batch_size - len(ids) % batch_size), mode='constant', constant_values=0)
     ids = ids.reshape(-1, batch_size)
+
+    summaries = np.pad(summaries, (0, batch_size - len(summaries) % batch_size), mode='constant', constant_values="")
     summaries = summaries.reshape(-1, batch_size)
     # convert each element in summaries to string
     summaries = [[str(s) for s in summary] for summary in summaries]
