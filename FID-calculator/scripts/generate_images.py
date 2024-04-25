@@ -15,6 +15,7 @@ from PIL import Image
 from einops import rearrange
 import pickle
 import sys
+import pandas as pd
 import h5py
 import io
 import os
@@ -42,7 +43,7 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
     levels = ["low", "high"]
     num_levels = 2
 
-    captions = []
+    captions = pd.DataFrame(columns=["idx", "caption"])
 
     for idx in tqdm.tqdm(indices_test):
 
@@ -51,7 +52,6 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
         text_prompt = summaries[wsi_name]
 
         text_name = f"{wsi_name}_{folder_name}"
-        print(text_name)
 
         text_prompt = summaries[wsi_name]
 
@@ -72,7 +72,8 @@ def TCGADataset(data_dir, token_num, outdir, crop_size=256):
         if np.random.rand() < 0.1 and (p_til is None or p_til == 0):
             text_prompt = ""
 
-        captions.append(text_prompt)
+        temp_df = pd.DataFrame({"idx": [text_name], "caption": [text_prompt]})
+        captions = pd.concat([captions, temp_df])
         
     return captions
 
