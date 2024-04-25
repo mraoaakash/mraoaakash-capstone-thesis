@@ -7,7 +7,7 @@ from omegaconf import OmegaConf
 from torchvision import transforms
 
 from PathLDM.ddim import DDIMSampler
-from PathLDM.util import instantiate_from_config
+from PathLDM.ldm_utils import instantiate_from_config
 warnings.filterwarnings("ignore")
 import matplotlib.pyplot as plt
 from torchvision.utils import make_grid
