@@ -30,4 +30,4 @@ echo "/media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i"
 # python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_feed/images
 
 
-python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75 --batch-size 32
+python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75/images --batch-size 32
