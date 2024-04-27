@@ -16,7 +16,7 @@ echo "/media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i"
 #     --data_dir $BASEPATH \
 #     --token_num 75 \
 #     --batch_size 32 \
-#     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i
+#     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75
 
 python scripts/generate_images.py \
     --ckpt_path $SHAREPATH/PathLDM/outputs/04-20T12-35_testing/checkpoints/last.ckpt \
@@ -24,4 +24,4 @@ python scripts/generate_images.py \
     --data_dir $BASEPATH \
     --token_num 20 \
     --batch_size 32 \
-    --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i
+    --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20
