@@ -18,10 +18,19 @@ echo "/media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i"
 #     --batch_size 32 \
 #     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75
 
-python scripts/generate_images.py \
-    --ckpt_path $SHAREPATH/PathLDM/outputs/04-20T12-35_testing/checkpoints/last.ckpt \
-    --config_path $SHAREPATH/PathLDM/outputs/04-20T12-35_testing/configs/04-20T12-35-project.yaml \
-    --data_dir $BASEPATH \
-    --token_num 20 \
-    --batch_size 32 \
-    --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20
+# python scripts/generate_images.py \
+#     --ckpt_path $SHAREPATH/PathLDM/outputs/04-20T12-35_testing/checkpoints/last.ckpt \
+#     --config_path $SHAREPATH/PathLDM/outputs/04-20T12-35_testing/configs/04-20T12-35-project.yaml \
+#     --data_dir $BASEPATH \
+#     --token_num 20 \
+#     --batch_size 32 \
+#     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20
+
+
+python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_feed
+
+
+# python scripts/fid.py \
+#     --real_path /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images \
+#     --generated /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20 \
+#     --batch_size 32
