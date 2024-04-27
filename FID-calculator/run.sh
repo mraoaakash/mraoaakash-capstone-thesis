@@ -27,7 +27,7 @@ echo "/media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_$i"
 #     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20
 
 
-python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_feed
+python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_feed/images
 
 
 # python scripts/fid.py \
