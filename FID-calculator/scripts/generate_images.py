@@ -129,7 +129,7 @@ if __name__ == "__main__":
     batch_size = args.batch_size
     shape = [3,64,64]
 
-    scale = 1.5
+    scale = 1.75
 
     outdir = os.path.join(args.outdir, "images")
     os.makedirs(outdir, exist_ok=True)
