@@ -14,6 +14,17 @@ def intersection_gen(reference_dir, norm_dir, outdir):
     norm_images = np.array(os.listdir(norm_dir))
 
     return np.intersect1d(ref_images, norm_images)
+
+def maker(token, basedir, outdir, intersect):
+    basedir = os.path.join(basedir, f"generated_{token}")
+    outdir = os.path.join(outdir, f"gen_{token}")
+    print(f"Making dataset uniform for {token}")
+    os.makedirs(outdir, exist_ok=True)
+
+    print(intersect)
+    print(os.listdir(basedir))
+    pass
+    
     
 
 if __name__ == '__main__':
@@ -26,3 +37,7 @@ if __name__ == '__main__':
 
     INTERSECTION = intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
     print(INTERSECTION)
+
+    for token in ["20"]:
+        maker(token, args.norm_dir, args.outdir, INTERSECTION)
+
