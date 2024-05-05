@@ -7,11 +7,11 @@ import random
 import cv2
 
 def make_uniform(reference_dir, norm_dir, outdir):
+    print("running")
     ref_images = np.array(os.listdir(reference_dir))
     norm_images = np.array(os.listdir(norm_dir))
 
     intersection = np.intersect1d(ref_images, norm_images)
-    print(f'Intersection: {len(intersection)}')
     
     if not os.path.exists(outdir):
         os.makedirs(outdir)
