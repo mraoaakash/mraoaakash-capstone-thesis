@@ -21,8 +21,8 @@ def maker(token, basedir, outdir, intersect):
     print(f"Making dataset uniform for {token}")
     os.makedirs(outdir, exist_ok=True)
 
-    print(intersect)
-    print(os.listdir(basedir))
+    # print(intersect)
+    # print(os.listdir(basedir))
 
     for img in tqdm.tqdm(intersect):
         shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
