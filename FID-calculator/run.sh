@@ -45,6 +45,7 @@ BASEPATH=$SHAREPATH/PathLDM/inputs
 
 
 python scripts/make_uniform.py \
-    --reference_dir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_35/images \
+    --reference_dir1 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_35/images \
+    --reference_dir2 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_50/images \
     --norm_dir  /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75/images \
     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_154/images
