@@ -51,12 +51,13 @@ BASEPATH=$SHAREPATH/PathLDM/inputs
 #     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/
 
 
-echo "saving stats for original_images"
+# echo "saving stats for original_images"
 
-python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/images /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/img_npzfile
+# python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/images /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/img_npzfile
 
 
 for i in 20 35 50 75
 do
-    python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_$images
+    echo "Calculating FID for $i"
+    python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_$i --batch-size 128
 done
