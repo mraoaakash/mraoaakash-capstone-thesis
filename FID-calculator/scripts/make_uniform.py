@@ -6,7 +6,7 @@ import numpy as np
 import random
 import cv2
 
-def make_uniformer(reference_dir, norm_dir, outdir):
+def intersection_gen(reference_dir, norm_dir, outdir):
     print("running")
     ref_images = np.array(os.listdir(reference_dir))
     norm_images = np.array(os.listdir(norm_dir))
@@ -29,4 +29,4 @@ if '__name__' == '__main__':
     print(args)
 
 
-    make_uniformer(args.reference_dir, args.norm_dir, args.outdir)
+    intersection_gen(args.reference_dir, args.norm_dir, args.outdir)
