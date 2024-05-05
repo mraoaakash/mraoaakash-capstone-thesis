@@ -13,7 +13,7 @@ def intersection_gen(reference_dir, norm_dir, outdir):
     ref_images = np.array(os.listdir(reference_dir))
     norm_images = np.array(os.listdir(norm_dir))
 
-    INTERSECTION = np.intersect1d(ref_images, norm_images)
+    return np.intersect1d(ref_images, norm_images)
     
 
 if __name__ == '__main__':
@@ -24,5 +24,5 @@ if __name__ == '__main__':
     argparser.add_argument('--outdir', type=str, required=True, help='Path to the output directory')
     args = argparser.parse_args()
 
-    intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
+    INTERSECTION = intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
     print(INTERSECTION)
