@@ -24,5 +24,5 @@ if __name__ == '__main__':
     argparser.add_argument('--outdir', type=str, required=True, help='Path to the output directory')
     args = argparser.parse_args()
 
-    intersection_gen(args.reference_dir, args.norm_dir, args.outdir)
+    intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
     print(INTERSECTION)
