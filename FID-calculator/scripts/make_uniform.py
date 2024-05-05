@@ -47,7 +47,6 @@ def maker(original, outdir, intersect):
             shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
         except:
             print(f"Error copying {img}")
-        break
 
     pass
     
