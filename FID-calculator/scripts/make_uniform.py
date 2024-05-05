@@ -25,8 +25,10 @@ def maker(token, basedir, outdir, intersect):
     # print(os.listdir(basedir))
 
     for img in tqdm.tqdm(intersect):
-        shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
-        break
+        try:
+            shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
+        except:
+            print(f"Error copying {img}")
 
     pass
     
