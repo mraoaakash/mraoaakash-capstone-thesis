@@ -44,7 +44,7 @@ BASEPATH=$SHAREPATH/PathLDM/inputs
 # python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20/images --batch-size 128
 
 
-python make_uniform.py \
+python scripts/make_uniform.py \
     --reference_dir /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_50/images \
     --norm_dir  /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_75/images \
     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_154/images\
