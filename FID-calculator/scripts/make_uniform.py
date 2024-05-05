@@ -16,8 +16,8 @@ def intersection_gen(reference_dir, norm_dir, outdir):
     return np.intersect1d(ref_images, norm_images)
 
 def maker(token, basedir, outdir, intersect):
-    basedir = os.path.join(basedir, f"generated_{token}")
-    outdir = os.path.join(outdir, f"gen_{token}")
+    basedir = os.path.join(basedir, f"generated_{token}", "images")
+    outdir = os.path.join(outdir, f"gen_{token}", "images")
     print(f"Making dataset uniform for {token}")
     os.makedirs(outdir, exist_ok=True)
 
