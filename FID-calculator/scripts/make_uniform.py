@@ -26,4 +26,7 @@ if '__name__' == '__main__':
     parser.add_argument('--outdir', type=str, required=True, help='Path to the output directory')
     args = parser.parse_args()
 
+    print(args)
+    
+
     make_uniform(args.reference_dir, args.norm_dir, args.outdir)
