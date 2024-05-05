@@ -36,7 +36,7 @@ def maker(token, basedir, outdir, intersect):
 
 def maker(original, outdir, intersect):
     basedir = os.path.join(original, "original_images")
-    outdir = os.path.join(outdir, "images")
+    outdir = os.path.join(outdir, "original", "images")
     print(f"Making dataset original_images uniform")
     os.makedirs(outdir, exist_ok=True)
 
