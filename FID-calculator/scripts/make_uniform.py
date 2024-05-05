@@ -45,6 +45,6 @@ if __name__ == '__main__':
     INTERSECTION = intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
     print(INTERSECTION)
 
-    for token in ["20"]:
+    for token in ["35", "50","75"]:
         maker(token, args.norm_dir, args.outdir, INTERSECTION)
 
