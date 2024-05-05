@@ -59,5 +59,5 @@ BASEPATH=$SHAREPATH/PathLDM/inputs
 for i in 20 35 50 75
 do
     echo "Calculating FID for $i"
-    python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_$i --batch-size 128
+    python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_$i/images --batch-size 128
 done
