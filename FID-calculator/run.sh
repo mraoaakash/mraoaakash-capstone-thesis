@@ -44,8 +44,19 @@ BASEPATH=$SHAREPATH/PathLDM/inputs
 # python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/original_images /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_20/images --batch-size 128
 
 
-python scripts/make_uniform.py \
-    --reference_dir1 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_35/images \
-    --reference_dir2 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_50/images \
-    --norm_dir  /media/chs.gpu/DATA/aakash-work/PathLDM/input/ \
-    --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/
+# python scripts/make_uniform.py \
+#     --reference_dir1 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_35/images \
+#     --reference_dir2 /media/chs.gpu/DATA/aakash-work/PathLDM/input/generated_50/images \
+#     --norm_dir  /media/chs.gpu/DATA/aakash-work/PathLDM/input/ \
+#     --outdir /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/
+
+
+echo "saving stats for original_images"
+
+python -m pytorch_fid --save-stats /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/images /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original/img_npzfile
+
+
+for i in 20 35 50 75
+do
+    python -m pytorch_fid /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/original /media/chs.gpu/DATA/aakash-work/PathLDM/input/uniform_gen/gen_$images
+done
