@@ -19,12 +19,12 @@ def intersection_gen(reference_dir, norm_dir, outdir):
 
     pass
 
-if '__name__' == '__main__':
-    parser = argparse.ArgumentParser(description='Make a dataset uniform')
-    parser.add_argument('--reference_dir', type=str, required=True, help='Path to the reference dataset')
-    parser.add_argument('--norm_dir', type=str, required=True, help='Path to the dataset to be normalized')
-    parser.add_argument('--outdir', type=str, required=True, help='Path to the output directory')
-    args = parser.parse_args()
+if __name__ == '__main__':
+    argparser = argparse.ArgumentParser(description='Make a dataset uniform')
+    argparser.add_argument('--reference_dir', type=str, required=True, help='Path to the reference dataset')
+    argparser.add_argument('--norm_dir', type=str, required=True, help='Path to the dataset to be normalized')
+    argparser.add_argument('--outdir', type=str, required=True, help='Path to the output directory')
+    args = argparser.parse_args()
 
     print(args)
 
