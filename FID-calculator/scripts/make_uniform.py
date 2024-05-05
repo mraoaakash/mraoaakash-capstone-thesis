@@ -25,10 +25,29 @@ def maker(token, basedir, outdir, intersect):
     # print(os.listdir(basedir))
 
     for img in tqdm.tqdm(intersect):
+        if os.path.exists(os.path.join(outdir, img)):
+            continue
         try:
             shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
         except:
             print(f"Error copying {img}")
+
+    pass
+
+def maker(original, outdir, intersect):
+    basedir = os.path.join(original, "original_images")
+    outdir = os.path.join(outdir, "images")
+    print(f"Making dataset original_images uniform")
+    os.makedirs(outdir, exist_ok=True)
+
+    for img in tqdm.tqdm(intersect):
+        if os.path.exists(os.path.join(outdir, img)):
+            continue
+        try:
+            shutil.copy(os.path.join(basedir, img), os.path.join(outdir, img))
+        except:
+            print(f"Error copying {img}")
+        break
 
     pass
     
@@ -45,6 +64,10 @@ if __name__ == '__main__':
     INTERSECTION = intersection_gen(args.reference_dir1, args.reference_dir2, args.outdir)
     print(INTERSECTION)
 
-    for token in ["35", "50","75"]:
-        maker(token, args.norm_dir, args.outdir, INTERSECTION)
+    # for token in ["35", "50","75"]:
+    #     maker(token, args.norm_dir, args.outdir, INTERSECTION)
+    
+    maker(args.norm_dir, args.outdir, INTERSECTION)
+
+    
 
