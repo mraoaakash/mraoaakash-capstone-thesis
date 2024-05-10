@@ -1,8 +1,8 @@
 # Leveraging Text-Conditioned Diffusion in the Latent Space for Synthetic Cancer Pathology Image Generation
-### Capstine Thesis Submission 
-### [CS-4999-01] Ashoka University
 [![Static Badge](https://img.shields.io/badge/Paper--Google_Drive?logo=google%20drive&labelColor=gray)](https://drive.google.com/file/d/1jJczy5TyERaS_uUnW2SQtfpHK9kNqIAb/view?usp=sharing)
 [![Static Badge](https://img.shields.io/badge/Slides--Google_Drive?logo=google%20drive&labelColor=gray)](https://drive.google.com/file/d/1ZUqXE9PscoEi7yP7alWM8OEl9eOu41eD/view?usp=sharing)
+### Capstine Thesis Submission 
+### [CS-4999-01] Ashoka University
 
 This is the repository attached to CS-4999-01, my submission for the Computer Science ASP Capstone Thesis, 2024. This repository contains 5 folders
 1. FID-calculator
