@@ -1,6 +1,6 @@
-# python scripts/clean_json.py \
-#     --json data/all_clinical.json \
-#     --outfolder data/plots
+python scripts/clean_json.py \
+    --json data/all_clinical.json \
+    --outfolder data/plots
 
 
 python scripts/get_summaries.py \
